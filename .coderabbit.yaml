@@ -1,0 +1,9 @@
+reviews:
+  review_status: true
+  branches:
+    - "main"
+    - "PMOVES.AI-Edition-Hardened"
+    - "feat/*"
+    - "fix/*"
+
+language: "en-US"
