@@ -5,7 +5,7 @@ NATS service discovery announcer for all PMOVES services.
 Publishes service announcements to the services.announce.v1 subject.
 
 Usage:
-    from service_announcer import ServiceAnnouncer, announce_service
+    from pmoves_announcer import ServiceAnnouncer, announce_service
 
     # Create announcement
     announcer = ServiceAnnouncer(
@@ -32,22 +32,11 @@ Usage:
 import asyncio
 import json
 import os
+from pmoves_common import ServiceTier
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from enum import Enum
 
-
-class ServiceTier(str, Enum):
-    """PMOVES service tiers."""
-    DATA = "data"
-    API = "api"
-    LLM = "llm"
-    MEDIA = "media"
-    AGENT = "agent"
-    WORKER = "worker"
-    APP = "app"
-    UI = "ui"
 
 
 @dataclass
@@ -95,7 +84,7 @@ class ServiceAnnouncement:
             name=data["name"],
             url=data["url"],
             health_check=data["health_check"],
-            tier=ServiceTier(data["tier"]),
+            tier=ServiceTier(data["tier"]) if data.get("tier") in [t.value for t in ServiceTier] else data.get("tier"),
             port=data["port"],
             timestamp=data.get("timestamp", datetime.utcnow().isoformat()),
             metadata=data.get("metadata", {}),
