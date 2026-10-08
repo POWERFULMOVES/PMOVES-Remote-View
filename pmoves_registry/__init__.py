@@ -8,7 +8,7 @@ Service discovery using the PMOVES service registry with fallback chain:
 4. Docker DNS (development fallback)
 
 Usage:
-    from service_registry import get_service_url, ServiceInfo
+    from pmoves_registry import get_service_url, ServiceInfo
 
     # Simple URL resolution
     url = await get_service_url("hirag-v2")
@@ -20,21 +20,10 @@ Usage:
 
 import asyncio
 import os
+from pmoves_common import ServiceTier
 from dataclasses import dataclass, field
-from enum import Enum
 from typing import Any, Optional
 
-
-class ServiceTier(str, Enum):
-    """PMOVES service tiers."""
-    DATA = "data"
-    API = "api"
-    LLM = "llm"
-    MEDIA = "media"
-    AGENT = "agent"
-    WORKER = "worker"
-    APP = "app"
-    UI = "ui"
 
 
 @dataclass(frozen=True)
