@@ -88,15 +88,6 @@ x-env-tier-media: &env-tier-media
     - GPU_ENABLED=${GPU_ENABLED:-true}
     - MAX_CONCURRENT_JOBS=${MAX_CONCURRENT_JOBS:-4}
 
-# UI Tier Environment
-x-env-tier-ui: &env-tier-ui
-  <<: *pmoves-env-base
-  env_file:
-    - env.shared
-    - env.tier-ui     # UI tier specific configuration
-  environment:
-    - TIER=ui
-
 # Health check template
 x-pmoves-healthcheck: &pmoves-healthcheck
   healthcheck:

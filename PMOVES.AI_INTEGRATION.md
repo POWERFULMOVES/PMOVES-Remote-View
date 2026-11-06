@@ -21,7 +21,7 @@ Add the PMOVES.AI environment anchor to your `docker-compose.yml`:
 ```yaml
 services:
   remote-view:
-    <<: [*env-tier-ui, *pmoves-healthcheck]
+    <<: [*env-tier-agent, *pmoves-healthcheck]
     # Your existing service configuration...
 ```
 
